@@ -223,7 +223,8 @@ function __init__()
     catch e
         if PyCall.conda
             info("Installing matplotlib via the Conda package...")
-            Conda.add("matplotlib=1.4.2")
+            #Stop gap for https://github.com/conda/conda/issues/1753
+            Conda.add("matplotlib=1.4.3=np110py27_1")
             copy!(matplotlib, pyimport("matplotlib"))
         else
             error("""Failed to pyimport("matplotlib"): PyPlot will not work until you have a functioning matplotlib module.
